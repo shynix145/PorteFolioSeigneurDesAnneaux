@@ -225,6 +225,7 @@
       stepNum.textContent = `Étape ${ROMAN[a]} / ${ROMAN[STOPS.length - 1]}`;
       stepPlace.textContent = STOPS[a].name;
       document.body.dataset.stop = String(a);
+      document.dispatchEvent(new CustomEvent('journey:stop', { detail: a })); // écouté par music.js
     }
   };
 
