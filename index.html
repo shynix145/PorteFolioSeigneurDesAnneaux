@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Léonin Charron · Développeur web</title>
+  <meta name="description" content="Portfolio de Léonin Charron, développeur web en recherche de stage : un voyage de la Comté au Mordor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ CARTE (fixe, en fond) ============ -->
+  <div class="map-wrap" aria-hidden="false">
+    <svg id="map" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid meet" role="img"
+         aria-label="Carte du voyage, de la Comté à la Montagne du Destin">
+      <defs>
+        <radialGradient id="seaGrad" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#c9d3c2"/>
+          <stop offset="100%" stop-color="#aebaa6"/>
+        </radialGradient>
+        <radialGradient id="landGrad" cx="55%" cy="45%" r="75%">
+          <stop offset="0%" stop-color="#f3e7c9"/>
+          <stop offset="70%" stop-color="#ead9b2"/>
+          <stop offset="100%" stop-color="#dcc697"/>
+        </radialGradient>
+        <radialGradient id="doomGlow">
+          <stop offset="0%" stop-color="#e2582a" stop-opacity=".85"/>
+          <stop offset="100%" stop-color="#e2582a" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="ringGlow">
+          <stop offset="0%" stop-color="#f3c64f" stop-opacity=".75"/>
+          <stop offset="100%" stop-color="#f3c64f" stop-opacity="0"/>
+        </radialGradient>
+        <mask id="routeMask" maskUnits="userSpaceOnUse" x="-500" y="-500" width="3000" height="2500">
+          <path id="route-mask-path" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+        </mask>
+      </defs>
+      <g id="world"></g>
+    </svg>
+    <div class="paper" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+  </div>
+
+  <!-- ============ EN-TÊTE ============ -->
+  <header class="topbar">
+    <a href="#comte" class="brand" aria-label="Retour au début">
+      <span class="brand-seal">LC</span>
+      <span class="brand-name">Léonin Charron</span>
+    </a>
+    <p class="topbar-step" aria-live="polite">
+      <span class="topbar-num" id="step-num">Étape I / VI</span>
+      <span class="topbar-place" id="step-place">La Comté</span>
+    </p>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="overview-btn" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z M9 4v14 M15 6v14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span>Voir la carte</span>
+      </button>
+      <a class="btn btn-gold" href="assets/cv-leonin-charron.pdf" download>CV</a>
+    </div>
+  </header>
+
+  <!-- ============ ITINÉRAIRE ============ -->
+  <nav class="itinerary" aria-label="Étapes du voyage">
+    <ol id="itinerary-list"></ol>
+  </nav>
+
+  <!-- ============ ÉTAPES ============ -->
+  <main class="stages" id="stages">
+
+    <!-- I. LA COMTÉ : présentation -->
+    <section class="stage" id="comte" data-stop="0">
+      <article class="card card-hero">
+        <p class="chapter">Chapitre I · La Comté</p>
+        <h1>Léonin Charron</h1>
+        <p class="role">Développeur web, en quête d'un stage</p>
+        <div class="rule" aria-hidden="true"><span>✦</span></div>
+        <p class="lead">
+          20 ans, étudiant en Bachelor développement web à <strong>La Manu</strong>.
+          Je conçois des applications web complètes et sécurisées, de l'interface jusqu'à la base de données.
+        </p>
+        <p class="available"><span class="dot" aria-hidden="true"></span> Disponible pour un stage de <strong>12 semaines</strong> dès le <strong>26 avril</strong></p>
+        <ul class="chips" aria-label="Technologies principales">
+          <li>PHP</li><li>MySQL</li><li>JavaScript</li><li>HTML / CSS</li><li>Sass</li><li>Git</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-gold" href="#mordor" data-goto="5">Me contacter</a>
+          <a class="btn btn-line" href="#gondor" data-goto="4">Voir mes projets</a>
+        </div>
+        <p class="flavor">Tout grand voyage commence au pas de sa porte. Faites défiler pour partir.</p>
+      </article>
+    </section>
+
+    <!-- II. FONDCOMBE : la Communauté (stack) -->
+    <section class="stage" id="fondcombe" data-stop="1">
+      <article class="card">
+        <p class="chapter">Chapitre II · Fondcombe</p>
+        <h2>La Communauté</h2>
+        <p class="lead">À Fondcombe, la Communauté se forme. Voici les outils qui m'accompagnent sur chaque projet, chacun avec son rôle.</p>
+        <ul class="fellowship">
+          <li>
+            <span class="f-role">Front-end</span>
+            <strong>HTML · CSS · Sass</strong>
+            <span>Intégrations responsives, architecture SMACSS, maquettes Figma fidèles.</span>
+          </li>
+          <li>
+            <span class="f-role">Interactivité</span>
+            <strong>JavaScript</strong>
+            <span>Manipulation du DOM, animations, jeux et interfaces dynamiques.</span>
+          </li>
+          <li>
+            <span class="f-role">Back-end</span>
+            <strong>PHP</strong>
+            <span>Logique serveur, formulaires, authentification, architecture MVC.</span>
+          </li>
+          <li>
+            <span class="f-role">Données</span>
+            <strong>MySQL</strong>
+            <span>Modélisation, requêtes SQL, requêtes préparées.</span>
+          </li>
+          <li>
+            <span class="f-role">Versionnage</span>
+            <strong>Git · GitHub</strong>
+            <span>Historique propre, branches, travail en équipe.</span>
+          </li>
+          <li>
+            <span class="f-role">Design</span>
+            <strong>Figma</strong>
+            <span>Lecture de maquettes, prototypes, design system.</span>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- III. LA MORIA : ce que j'approfondis -->
+    <section class="stage" id="moria" data-stop="2">
+      <article class="card card-dark">
+        <p class="chapter">Chapitre III · La Moria</p>
+        <h2>Creuser plus profond</h2>
+        <p class="lead">Les nains ont creusé la Moria pour en tirer le meilleur. Moi, je creuse ces sujets pour aller au-delà des bases.</p>
+        <ol class="depths">
+          <li>
+            <span class="depth-level">Niveau 1</span>
+            <div>
+              <strong>Sécurité web</strong>
+              <p>Comprendre les attaques (injections SQL, XSS, CSRF) pour mieux protéger les applications que je développe.</p>
+            </div>
+          </li>
+          <li>
+            <span class="depth-level">Niveau 2</span>
+            <div>
+              <strong>Python</strong>
+              <p>Scripts et automatisation : j'ai déjà construit un outil de veille de stock qui envoie des alertes Discord.</p>
+            </div>
+          </li>
+          <li>
+            <span class="depth-level">Niveau 3</span>
+            <div>
+              <strong>Architecture du code</strong>
+              <p>Écrire du code maintenable : CSS modulaire avec Sass, séparation des responsabilités côté PHP.</p>
+            </div>
+          </li>
+        </ol>
+      </article>
+    </section>
+
+    <!-- IV. ROHAN : savoir-être & parcours -->
+    <section class="stage" id="rohan" data-stop="3">
+      <article class="card">
+        <p class="chapter">Chapitre IV · Le Rohan</p>
+        <h2>Mon parcours</h2>
+        <p class="lead">Le Rohan, c'est l'esprit d'équipe et la parole tenue. Ce que j'apporte au-delà du code.</p>
+        <ol class="timeline">
+          <li>
+            <span class="tl-date">Aujourd'hui</span>
+            <strong>Bachelor Développement web · La Manu</strong>
+            <p>Conception d'applications complètes : front, back, base de données, gestion de projet.</p>
+          </li>
+          <li>
+            <span class="tl-date">Avril</span>
+            <strong>Stage de 12 semaines</strong>
+            <p>La prochaine étape : mettre ces compétences au service d'une vraie équipe.</p>
+          </li>
+        </ol>
+        <h3 class="sub">Savoir-être</h3>
+        <ul class="virtues">
+          <li><strong>Curieux</strong><span>J'apprends vite, en conditions réelles.</span></li>
+          <li><strong>Autonome</strong><span>Je mène un projet de A à Z.</span></li>
+          <li><strong>Rigoureux</strong><span>Code lisible, versionné, testé.</span></li>
+          <li><strong>Esprit d'équipe</strong><span>J'aime avancer à plusieurs.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- V. GONDOR : projets -->
+    <section class="stage" id="gondor" data-stop="4">
+      <article class="card card-projects">
+        <p class="chapter">Chapitre V · Minas Tirith, Gondor</p>
+        <h2>Mes réalisations</h2>
+        <p class="lead">La cité blanche garde les archives du royaume. Voici les miennes : les projets dont je suis fier.</p>
+        <div class="projects" id="projects"></div>
+      </article>
+    </section>
+
+    <!-- VI. MORDOR : la quête = le stage + contact -->
+    <section class="stage" id="mordor" data-stop="5">
+      <article class="card card-final">
+        <p class="chapter">Chapitre VI · La Montagne du Destin</p>
+        <h2>La quête : mon stage</h2>
+        <p class="lead">Le voyage arrive à son but. Je cherche une équipe où mettre tout ça en pratique.</p>
+        <dl class="quest">
+          <div><dt>Durée</dt><dd>12 semaines</dd></div>
+          <div><dt>Début</dt><dd>Dès le 26 avril</dd></div>
+          <div><dt>Domaine</dt><dd>Développement web</dd></div>
+        </dl>
+
+        <form class="contact" id="contact-form" novalidate>
+          <div class="field">
+            <label for="c-name">Nom</label>
+            <input id="c-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input id="c-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field field-full">
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <button class="btn btn-gold" type="submit">Envoyer le message</button>
+        </form>
+
+        <ul class="links">
+          <li><a href="mailto:leonin.charron28@gmail.com">leonin.charron28@gmail.com</a></li>
+          <li><a href="https://github.com/ton-pseudo" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ton-profil" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+        <p class="flavor">Fin de ce voyage, et peut-être le début du prochain chapitre, avec vous.</p>
+        <footer class="foot">
+          © Léonin Charron ·
+          <a href="#comte" data-goto="0">Retour à la Comté ↑</a>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <a class="scroll-cue" id="scroll-cue" href="#" data-goto="1">
+    <span id="scroll-cue-text">Prendre la route</span>
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </a>
+
+  <script src="assets/js/map.js"></script>
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/journey.js"></script>
+</body>
+</html>
